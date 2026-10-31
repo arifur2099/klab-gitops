@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: nginx
-          image: ghcr.io/arifur2099/klab-apps:v1
+          image: ghcr.io/arifur2099/klab-apps:a3d1f8c
           ports:
             - containerPort: 80
           resources:
