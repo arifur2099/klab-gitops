@@ -9,4 +9,4 @@ resources:
 
 images:
   - name: ghcr.io/arifur2099/klab-apps
-    newTag: v1
+    newTag: a3d1f8c
