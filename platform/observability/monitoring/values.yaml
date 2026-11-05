@@ -1,0 +1,73 @@
+grafana:
+  enabled: true
+
+  admin:
+    existingSecret: grafana-admin
+    userKey: admin-user
+    passwordKey: admin-password
+
+  persistence:
+    enabled: true
+    storageClassName: local-path
+    size: 2Gi
+
+  service:
+    type: ClusterIP
+
+  defaultDashboardsEnabled: true
+
+prometheus:
+  prometheusSpec:
+    retention: 3d
+    retentionSize: 3GB
+
+    resources:
+      requests:
+        cpu: 200m
+        memory: 512Mi
+      limits:
+        memory: 2Gi
+
+    storageSpec:
+      volumeClaimTemplate:
+        spec:
+          storageClassName: local-path
+          accessModes:
+            - ReadWriteOnce
+          resources:
+            requests:
+              storage: 5Gi
+
+alertmanager:
+  enabled: true
+
+  alertmanagerSpec:
+    storage:
+      volumeClaimTemplate:
+        spec:
+          storageClassName: local-path
+          accessModes:
+            - ReadWriteOnce
+          resources:
+            requests:
+              storage: 1Gi
+
+# K3s embeds several control-plane components.
+# Their metrics endpoints are not necessarily exposed as
+# standalone Services.
+kubeControllerManager:
+  enabled: false
+
+kubeScheduler:
+  enabled: false
+
+kubeEtcd:
+  enabled: false
+
+# Keep kubelet and API server monitoring enabled.
+kubelet:
+  enabled: true
+
+kubeApiServer:
+  enabled: true
+
