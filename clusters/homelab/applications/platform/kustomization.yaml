@@ -4,3 +4,4 @@ kind: Kustomization
 resources:
   - monitoring.yaml
   - loki.yaml
+  - alloy.yaml
