@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: monitoring-rules
+  namespace: argocd
+spec:
+  project: default
+
+  source:
+    repoURL: https://github.com/arifur2099/klab-gitops.git
+    targetRevision: main
+    path: platform/observability/monitoring/rules
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: monitoring
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
